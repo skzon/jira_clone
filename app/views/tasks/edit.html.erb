@@ -1,0 +1,25 @@
+<% content_for :title, "Edit task · #{@task.title}" %>
+<% @project = @task.project %>
+
+<div class="page-header">
+  <div>
+    <div class="breadcrumb">
+      <%= link_to "Projects", projects_path %> /
+      <%= link_to @task.project.name, project_path(@task.project) %> /
+      <%= link_to @task.title, task_path(@task) %> /
+      <span>Edit</span>
+    </div>
+    <h1>Edit task</h1>
+    <p class="page-subtitle">
+      Updates and reassignments trigger an email to the people involved.
+    </p>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+    <div class="card p-4">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>

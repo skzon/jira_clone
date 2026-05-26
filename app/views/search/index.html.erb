@@ -1,0 +1,92 @@
+<% content_for :title, t("search.title") %>
+
+<div class="page-header">
+  <div>
+    <h1><%= t("search.heading") %></h1>
+    <% if @query.present? %>
+      <p class="page-subtitle">
+        <%= t("search.results_for", query: @query,
+              count: @tasks.size + @projects.size) %>
+      </p>
+    <% end %>
+  </div>
+</div>
+
+<div class="card p-3 mb-4">
+  <%= form_with url: search_path, method: :get, local: true, class: "d-flex gap-2" do |f| %>
+    <%= f.search_field :q,
+          value: @query,
+          class: "form-control",
+          placeholder: t("search.placeholder"),
+          autofocus: true %>
+    <%= f.submit t("search.button"), class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<% if @query.blank? %>
+  <div class="empty-state">
+    <div class="empty-icon"><i class="bi bi-search"></i></div>
+    <h3><%= t("search.empty_prompt_title") %></h3>
+    <p><%= t("search.empty_prompt_body") %></p>
+  </div>
+
+<% elsif @tasks.empty? && @projects.empty? %>
+  <div class="empty-state">
+    <div class="empty-icon"><i class="bi bi-binoculars"></i></div>
+    <h3><%= t("search.no_results_title") %></h3>
+    <p><%= t("search.no_results_body", query: @query) %></p>
+  </div>
+
+<% else %>
+  <% if @projects.any? %>
+    <div class="section-title mb-2"><%= t("search.projects_section") %></div>
+    <div class="card mb-4">
+      <ul class="list-group list-group-flush">
+        <% @projects.each do |project| %>
+          <li class="list-group-item d-flex align-items-center gap-3 py-3">
+            <span class="project-key"><%= project.name.first(2).upcase %></span>
+            <div class="flex-grow-1">
+              <div class="fw-semibold">
+                <%= link_to project.name, project_path(project), class: "text-decoration-none text-reset" %>
+              </div>
+              <div class="text-muted small">
+                <%= truncate(project.description.to_s, length: 100) %>
+              </div>
+            </div>
+            <%= status_badge(project.status) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @tasks.any? %>
+    <div class="section-title mb-2"><%= t("search.tasks_section") %></div>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <% @tasks.each do |task| %>
+          <li class="list-group-item d-flex align-items-center gap-3 py-3">
+            <%= status_badge(task.status) %>
+            <div class="flex-grow-1">
+              <div class="fw-semibold">
+                <%= link_to task.title, task_path(task), class: "text-decoration-none text-reset" %>
+              </div>
+              <div class="text-muted small">
+                <%= link_to task.project.name, project_path(task.project) %>
+                <% if task.description.present? %>
+                  · <%= truncate(task.description, length: 80) %>
+                <% end %>
+              </div>
+            </div>
+            <% if task.assignee %>
+              <span class="user-chip" style="background:#fff;border-color:#dfe1e6;">
+                <span class="avatar"><%= task.assignee.email.first %></span>
+                <span><%= task.assignee.display_name %></span>
+              </span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,140 @@
+<% if user_signed_in? %>
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb">Workspace / Dashboard</div>
+      <h1>Welcome back, <%= current_user.email.split("@").first.titleize %></h1>
+      <p class="page-subtitle">Here's what's happening across your projects today.</p>
+    </div>
+    <%= link_to new_project_path, class: "btn btn-primary" do %>
+      <i class="bi bi-plus-lg me-1"></i> Create project
+    <% end %>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card p-3">
+        <div class="section-title">Total projects</div>
+        <div class="d-flex align-items-baseline gap-2">
+          <span class="fs-3 fw-semibold"><%= @total_projects %></span>
+          <i class="bi bi-kanban text-primary"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card p-3">
+        <div class="section-title">Active</div>
+        <div class="d-flex align-items-baseline gap-2">
+          <span class="fs-3 fw-semibold"><%= @active_projects %></span>
+          <%= status_badge("active") %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card p-3">
+        <div class="section-title">On hold</div>
+        <div class="d-flex align-items-baseline gap-2">
+          <span class="fs-3 fw-semibold"><%= @on_hold_projects %></span>
+          <%= status_badge("on_hold") %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card p-3">
+        <div class="section-title">Completed</div>
+        <div class="d-flex align-items-baseline gap-2">
+          <span class="fs-3 fw-semibold"><%= @completed_projects %></span>
+          <%= status_badge("completed") %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-lg-8">
+      <div class="card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="h5 mb-0">Recent projects</h2>
+          <%= link_to "View all", projects_path, class: "small" %>
+        </div>
+
+        <% if @recent_projects.any? %>
+          <div class="list-group list-group-flush">
+            <% @recent_projects.each do |project| %>
+              <%= link_to project_path(project),
+                  class: "list-group-item list-group-item-action d-flex align-items-center py-3 border-0 border-bottom" do %>
+                <span class="project-key"><%= project.name.to_s.first(2).upcase %></span>
+                <div class="flex-grow-1">
+                  <div class="fw-semibold text-dark"><%= project.name %></div>
+                  <div class="text-muted small"><%= truncate(project.description.to_s, length: 80) %></div>
+                </div>
+                <%= status_badge(project.status) %>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="text-muted small">No projects yet. <%= link_to "Create your first one", new_project_path %>.</div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card p-4 h-100">
+        <h2 class="h5 mb-3">Quick actions</h2>
+        <div class="d-grid gap-2">
+          <%= link_to new_project_path, class: "btn btn-primary" do %>
+            <i class="bi bi-plus-lg me-1"></i> New project
+          <% end %>
+          <%= link_to projects_path, class: "btn btn-outline-secondary" do %>
+            <i class="bi bi-folder2-open me-1"></i> Browse projects
+          <% end %>
+          <%= link_to edit_user_registration_path, class: "btn btn-outline-secondary" do %>
+            <i class="bi bi-person-gear me-1"></i> Account settings
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% else %>
+
+  <section class="jira-hero">
+    <span class="eyebrow"><i class="bi bi-lightning-charge-fill"></i> Project tracking, simplified</span>
+    <h1>Plan, track, and ship&nbsp;<span style="color: var(--jira-blue);">your work</span>&nbsp;in one place.</h1>
+    <p class="lead">
+      A lightweight Jira-inspired workspace built with Ruby on Rails and Bootstrap.
+      Spin up projects, organise them by status, and keep your team aligned.
+    </p>
+    <div class="hero-actions">
+      <%= link_to new_user_registration_path, class: "btn btn-primary btn-lg" do %>
+        <i class="bi bi-rocket-takeoff me-1"></i> Get started — it's free
+      <% end %>
+      <%= link_to "I already have an account", new_user_session_path,
+          class: "btn btn-subtle btn-lg" %>
+    </div>
+  </section>
+
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="feature-card">
+        <span class="feature-icon"><i class="bi bi-kanban"></i></span>
+        <h5>Organise projects</h5>
+        <p>Group your work into projects with descriptions and statuses — Active, On Hold, Completed.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <span class="feature-icon"><i class="bi bi-shield-lock"></i></span>
+        <h5>Secure accounts</h5>
+        <p>Email + password authentication powered by Devise. Each user only sees their own work.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <span class="feature-icon"><i class="bi bi-lightning-charge"></i></span>
+        <h5>Fast and lightweight</h5>
+        <p>Server-rendered ERB and Bootstrap — no heavy build step, instant page loads, easy to extend.</p>
+      </div>
+    </div>
+  </div>
+
+<% end %>

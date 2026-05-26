@@ -1,0 +1,12 @@
+# alice owns alpha, bob is a member of alpha, bob owns beta
+alice_alpha:
+  user: alice
+  project: alpha
+
+bob_alpha:
+  user: bob
+  project: alpha
+
+bob_beta:
+  user: bob
+  project: beta

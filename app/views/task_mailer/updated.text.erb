@@ -1,0 +1,15 @@
+A task you're following was updated in <%= @task.project.name %>.
+
+Updated by: <%= @actor&.email || "Someone" %>
+Task: <%= @task.title %>
+
+Changes:
+<% if @changes.any? -%>
+<% @changes.each do |field, (from, to)| -%>
+- <%= field.humanize %>: <%= from.presence || "—" %> -> <%= to.presence || "—" %>
+<% end -%>
+<% else -%>
+(no tracked field changes)
+<% end -%>
+
+View it: <%= @task_url %>

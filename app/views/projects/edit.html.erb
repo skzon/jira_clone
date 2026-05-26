@@ -1,0 +1,21 @@
+<% content_for :title, "Edit #{@project.name} · Jira Clone" %>
+
+<div class="page-header">
+  <div>
+    <div class="breadcrumb">
+      <%= link_to "Projects", projects_path %> /
+      <%= link_to @project.name, project_path(@project) %> /
+      <span>Edit</span>
+    </div>
+    <h1>Edit project</h1>
+    <p class="page-subtitle">Update the details for <strong><%= @project.name %></strong>.</p>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card p-4">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>

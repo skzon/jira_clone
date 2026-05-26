@@ -1,0 +1,36 @@
+<p style="margin:0 0 12px;font-size:16px;font-weight:600;">
+  You've been assigned a task
+</p>
+<p style="margin:0 0 16px;color:#42526e;">
+  <%= @actor&.email || "Someone" %> assigned you to a task in
+  <strong><%= @task.project.name %></strong>.
+</p>
+
+<table cellpadding="0" cellspacing="0" style="width:100%;background:#f4f8ff;border:1px solid #deebff;border-radius:6px;padding:14px 16px;margin-bottom:20px;">
+  <tr>
+    <td>
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#0747a6;font-weight:700;margin-bottom:6px;">
+        Task
+      </div>
+      <div style="font-size:15px;font-weight:600;color:#172b4d;margin-bottom:8px;">
+        <%= @task.title %>
+      </div>
+      <div style="font-size:12px;color:#6b778c;">
+        Status: <strong><%= @task.status_label %></strong>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<% if @task.description.present? %>
+  <p style="margin:0 0 16px;white-space:pre-line;color:#42526e;">
+    <%= truncate(@task.description, length: 400) %>
+  </p>
+<% end %>
+
+<p style="margin:0;">
+  <a href="<%= @task_url %>"
+     style="display:inline-block;background:#0052cc;color:#fff;text-decoration:none;padding:10px 18px;border-radius:4px;font-weight:600;">
+    Open task
+  </a>
+</p>

@@ -1,0 +1,35 @@
+<% content_for :title, "Forgot your password? · Jira Clone" %>
+
+<div class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <span class="brand-mark">J</span>
+      <span>Jira Clone</span>
+    </div>
+
+    <h1>Forgot your password?</h1>
+    <p class="auth-subtitle">Enter the email you signed up with and we'll send you reset instructions.</p>
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name),
+                 html: { method: :post }) do |f| %>
+      <div class="mb-3">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              class: "form-control",
+              placeholder: "you@example.com" %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Send reset instructions", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <div class="auth-links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

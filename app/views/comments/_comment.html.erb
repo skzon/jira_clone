@@ -1,0 +1,29 @@
+<div class="d-flex gap-3" id="comment-<%= comment.id %>">
+  <div>
+    <span class="avatar" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4c9aff,#5243aa);color:#fff;font-weight:700;font-size:0.8rem;text-transform:uppercase;">
+      <%= comment.user.email.first %>
+    </span>
+  </div>
+  <div class="flex-grow-1">
+    <div class="d-flex align-items-center justify-content-between mb-1">
+      <div class="small">
+        <strong><%= comment.user.email %></strong>
+        <span class="text-muted ms-1">
+          · <%= comment.created_at.strftime("%b %-d, %Y at %H:%M") %>
+        </span>
+      </div>
+      <% if comment.user_id == current_user&.id %>
+        <%= button_to task_comment_path(comment.task, comment),
+              method: :delete,
+              form: { class: "d-inline", data: { turbo_confirm: "Delete this comment?" } },
+              class: "btn btn-sm btn-subtle text-muted p-1",
+              title: "Delete comment" do %>
+          <i class="bi bi-trash"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="card p-3" style="background:#f4f5f7;border-color:#dfe1e6;">
+      <div style="white-space: pre-line;"><%= comment.body %></div>
+    </div>
+  </div>
+</div>

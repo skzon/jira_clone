@@ -1,0 +1,13 @@
+<%= form_with model: comment, url: task_comments_path(task), local: true do |f| %>
+  <div class="mb-2">
+    <%= f.label :body, "Add a comment", class: "form-label" %>
+    <%= f.text_area :body,
+          rows: 3,
+          class: "form-control",
+          placeholder: "Share an update, ask a question, or @-mention later…",
+          required: true %>
+  </div>
+  <div class="d-flex justify-content-end">
+    <%= f.submit "Post comment", class: "btn btn-primary" %>
+  </div>
+<% end %>

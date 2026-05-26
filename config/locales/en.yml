@@ -1,0 +1,97 @@
+en:
+  app_name: "Jira Clone"
+
+  nav:
+    brand: "Jira Clone"
+    dashboard: "Dashboard"
+    projects: "Projects"
+    search: "Search"
+    log_in: "Log in"
+    sign_up: "Sign up"
+    logout: "Logout"
+
+  search:
+    title: "Search · Jira Clone"
+    heading: "Search"
+    placeholder: "Search tasks and projects…"
+    button: "Search"
+    results_for:
+      one: '1 result for "%{query}"'
+      other: '%{count} results for "%{query}"'
+    projects_section: "Projects"
+    tasks_section: "Tasks"
+    empty_prompt_title: "What are you looking for?"
+    empty_prompt_body: "Search across all tasks and projects you're a member of."
+    no_results_title: "No results found"
+    no_results_body: 'Nothing matched "%{query}". Try a different keyword.'
+    elasticsearch_unavailable: "Search is temporarily unavailable. Please try again later."
+
+  projects:
+    index:
+      title: "Projects · Jira Clone"
+      heading: "Projects"
+      subtitle:
+        one: "1 project in your workspace."
+        other: "%{count} projects in your workspace."
+      new_button: "New project"
+      empty_title: "No projects yet"
+      empty_body: "Spin up your first project to start organising your work."
+    new:
+      title: "Create project · Jira Clone"
+      heading: "Create a new project"
+    edit:
+      heading: "Edit project"
+    show:
+      new_task_button: "New task"
+      tasks_section: "Tasks"
+      members_section: "Members"
+      description_section: "Description"
+      no_description: "No description provided."
+      no_tasks_title: "No tasks yet"
+      no_tasks_body: "Break the work down into tasks and assign them to your team."
+
+  tasks:
+    new:
+      heading: "Create a task"
+    edit:
+      heading: "Edit task"
+    show:
+      description_section: "Description"
+      attachments_section: "Attachments"
+      comments_section: "Comments"
+      no_description: "No description provided."
+      no_attachments: "No attachments yet."
+      no_comments: "No comments yet. Start the discussion below."
+      unassigned: "Unassigned"
+      details_section: "Details"
+
+  comments:
+    post_button: "Post comment"
+    placeholder: "Share an update, ask a question…"
+    label: "Add a comment"
+
+  members:
+    section_title: "Members"
+    add_button: "Add"
+    pick_placeholder: "Pick a user…"
+    all_members_note: "All users are already members."
+    invite_link: "Invite a new teammate"
+
+  flash:
+    project_created: "Project created successfully."
+    project_updated: "Project updated successfully."
+    project_deleted: "Project deleted successfully."
+    task_created: "Task created."
+    task_updated: "Task updated."
+    task_deleted: "Task deleted."
+    comment_posted: "Comment posted."
+    comment_deleted: "Comment deleted."
+    member_added: "Added %{email} to the project."
+    member_removed: "Removed %{email} from the project."
+    access_denied: "You don't have access to that project."
+    comment_own_only: "You can only delete your own comments."
+
+  locale:
+    switch: "Switch language"
+    en: "English"
+    hi: "हिन्दी"

@@ -1,0 +1,13 @@
+You've been added to <%= @project.name %>.
+
+Added by: <%= @actor&.email || "Someone" %>
+Project:  <%= @project.name %>
+
+<% if @project.description.present? -%>
+<%= truncate(@project.description, length: 280) %>
+
+<% end -%>
+You can now view its tasks, post comments, upload attachments,
+and have tasks assigned to you.
+
+Open it: <%= @project_url %>
