@@ -2,10 +2,10 @@ alpha:
   name: Alpha Project
   description: The first test project
   status: active
-  user: alice
+  creator: alice
 
 beta:
   name: Beta Project
   description: A second project for edge-case tests
   status: on_hold
-  user: bob
+  creator: bob
