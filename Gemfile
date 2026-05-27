@@ -69,7 +69,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "cssbundling-rails", "~> 1.4"
 gem "devise"
 
 # S3-backed Active Storage (used in production; optional in dev via env vars)
