@@ -79,3 +79,6 @@ gem "searchkick"
 gem "elasticsearch", ">= 7", "< 9"
 
 gem "sidekiq", "~> 8.1"
+
+# Consistent JSON serialisation for API responses
+gem "blueprinter"
