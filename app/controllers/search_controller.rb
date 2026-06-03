@@ -1,5 +1,4 @@
-class SearchController < ApplicationController
-  before_action :authenticate_user!
+class SearchController < AuthenticatedController
 
   def index
     @query = params[:q].to_s.strip

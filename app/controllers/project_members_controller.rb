@@ -1,5 +1,4 @@
-class ProjectMembersController < ApplicationController
-  before_action :authenticate_user!
+class ProjectMembersController < AuthenticatedController
   before_action :set_project
   before_action :authorize!
 

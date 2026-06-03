@@ -1,5 +1,4 @@
-class AttachmentsController < ApplicationController
-  before_action :authenticate_user!
+class AttachmentsController < AuthenticatedController
   before_action :set_task
   before_action :authorize!
 

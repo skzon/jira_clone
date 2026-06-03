@@ -1,5 +1,4 @@
-class TasksController < ApplicationController
-  before_action :authenticate_user!
+class TasksController < AuthenticatedController
   before_action :set_project,  only: [ :new, :create ]
   before_action :set_task,     only: [ :show, :edit, :update, :destroy ]
   before_action :authorize!
