@@ -1,0 +1,11 @@
+alpha:
+  name: Alpha Project
+  description: The first test project
+  status: active
+  creator: alice
+
+beta:
+  name: Beta Project
+  description: A second project for edge-case tests
+  status: on_hold
+  creator: bob

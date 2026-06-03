@@ -1,0 +1,8 @@
+New comment on <%= @task.title %> in <%= @task.project.name %>.
+
+From: <%= @author.email %>
+At:   <%= @comment.created_at.strftime("%b %-d, %Y at %H:%M") %>
+
+<%= @comment.body %>
+
+Reply: <%= @task_url %>#comment-<%= @comment.id %>

@@ -1,0 +1,72 @@
+<%
+  form_url = @task.persisted? ? task_path(@task) : project_tasks_path(@project)
+  cancel_url = @task.persisted? ? task_path(@task) : project_path(@project)
+%>
+
+<%= form_with model: @task, url: form_url, multipart: true, local: true do |f| %>
+  <% if @task.errors.any? %>
+    <div class="error-summary">
+      <strong>
+        <%= pluralize(@task.errors.count, "error") %> prevented this task from being saved:
+      </strong>
+      <ul class="mb-0 ps-3">
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :title, class: "form-label" %>
+    <%= f.text_field :title,
+          class: "form-control",
+          placeholder: "Short, descriptive summary",
+          autofocus: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :description, class: "form-label" %>
+    <%= f.text_area :description,
+          rows: 5,
+          class: "form-control",
+          placeholder: "Add more detail, links, acceptance criteria…" %>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6 mb-3">
+      <%= f.label :status, class: "form-label" %>
+      <%= f.select :status,
+            Task::STATUSES.map { |s| [s.humanize, s] },
+            {},
+            class: "form-select" %>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <%= f.label :assignee_id, "Assignee", class: "form-label" %>
+      <%= f.select :assignee_id,
+            @task.project.members.order(:email).pluck(:email, :id),
+            { include_blank: "Unassigned" },
+            class: "form-select" %>
+      <div class="form-text">
+        Only project members appear here. Add more members from the project page.
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :attachments, "Attachments", class: "form-label" %>
+    <%= f.file_field :attachments,
+          multiple: true,
+          class: "form-control" %>
+    <div class="form-text">
+      Up to <%= Task::ATTACHMENT_MAX_BYTES / 1.megabyte %> MB per file. You can select multiple files.
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <%= f.submit (@task.persisted? ? "Save changes" : "Create task"),
+          class: "btn btn-primary" %>
+    <%= link_to "Cancel", cancel_url, class: "btn btn-subtle" %>
+  </div>
+<% end %>

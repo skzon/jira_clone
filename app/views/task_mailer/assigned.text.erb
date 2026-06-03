@@ -1,0 +1,11 @@
+You've been assigned a task in <%= @task.project.name %>.
+
+Assigned by: <%= @actor&.email || "Someone" %>
+Task: <%= @task.title %>
+Status: <%= @task.status_label %>
+
+<% if @task.description.present? -%>
+<%= truncate(@task.description, length: 400) %>
+
+<% end -%>
+Open it: <%= @task_url %>

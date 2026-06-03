@@ -1,0 +1,67 @@
+<%= form_with model: @project do |form| %>
+
+  <% if @project.errors.any? %>
+
+    <div class="alert alert-danger">
+
+      <h5>
+        <%= pluralize(@project.errors.count, "error") %>
+        prevented this project from saving:
+      </h5>
+
+      <ul class="mb-0">
+        <% @project.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+
+    </div>
+
+  <% end %>
+
+  <div class="mb-3">
+
+    <%= form.label :name,
+        class: "form-label" %>
+
+    <%= form.text_field :name,
+        class: "form-control",
+        placeholder: "Enter project name" %>
+
+  </div>
+
+  <div class="mb-3">
+
+    <%= form.label :description,
+        class: "form-label" %>
+
+    <%= form.text_area :description,
+        rows: 5,
+        class: "form-control",
+        placeholder: "Enter project description" %>
+
+  </div>
+
+  <div class="mb-3">
+
+    <%= form.label :status,
+        class: "form-label" %>
+
+    <%= form.select :status,
+        [["Active", "active"], ["On Hold", "on_hold"], ["Completed", "completed"]],
+        {},
+        class: "form-select" %>
+
+  </div>
+
+  <div class="d-flex gap-2">
+
+    <%= form.submit class: "btn btn-primary" %>
+
+    <%= link_to "Back",
+        projects_path,
+        class: "btn btn-secondary" %>
+
+  </div>
+
+<% end %>

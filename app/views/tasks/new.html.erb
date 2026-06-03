@@ -1,0 +1,23 @@
+<% content_for :title, "New task · #{@project.name}" %>
+
+<div class="page-header">
+  <div>
+    <div class="breadcrumb">
+      <%= link_to "Projects", projects_path %> /
+      <%= link_to @project.name, project_path(@project) %> /
+      <span>New task</span>
+    </div>
+    <h1>Create a task</h1>
+    <p class="page-subtitle">
+      Tasks belong to <strong><%= @project.name %></strong>. You can assign it to any teammate.
+    </p>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+    <div class="card p-4">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>

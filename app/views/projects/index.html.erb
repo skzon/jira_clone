@@ -1,0 +1,77 @@
+<% content_for :title, "Projects · Jira Clone" %>
+
+<div class="page-header">
+  <div>
+    <div class="breadcrumb">Workspace / Projects</div>
+    <h1>Projects</h1>
+    <p class="page-subtitle">
+      <%= pluralize(@projects.size, "project") %> in your workspace.
+    </p>
+  </div>
+
+  <%= link_to new_project_path, class: "btn btn-primary" do %>
+    <i class="bi bi-plus-lg me-1"></i> New project
+  <% end %>
+</div>
+
+<% if @projects.any? %>
+  <div class="row g-3">
+    <% @projects.each do |project| %>
+      <div class="col-md-6 col-xl-4">
+        <%# Fragment cache per project card — cache key includes updated_at so
+            it auto-expires when the project (or its members) change. %>
+        <% cache ["project-card/v1", project, I18n.locale] do %>
+        <div class="card project-card h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-start mb-3">
+              <span class="project-key"><%= project.name.to_s.first(2).upcase %></span>
+              <div class="flex-grow-1">
+                <h5 class="card-title mb-1">
+                  <%= link_to project.name, project_path(project),
+                        class: "text-decoration-none text-reset stretched-link" %>
+                </h5>
+                <%= status_badge(project.status) %>
+              </div>
+            </div>
+
+            <p class="card-text text-muted small mb-0">
+              <%= truncate(project.description.to_s, length: 110) %>
+            </p>
+          </div>
+
+          <div class="card-footer bg-white border-top d-flex justify-content-between align-items-center"
+               style="position:relative; z-index:2;">
+            <small class="text-muted">
+              <i class="bi bi-clock-history me-1"></i>
+              Updated <%= time_ago_in_words(project.updated_at) %> ago
+            </small>
+            <div class="d-flex gap-1">
+              <%= link_to edit_project_path(project),
+                    class: "btn btn-sm btn-subtle",
+                    title: "Edit" do %>
+                <i class="bi bi-pencil"></i>
+              <% end %>
+              <%= button_to project_path(project),
+                    method: :delete,
+                    form: { class: "d-inline", data: { turbo_confirm: "Delete '#{project.name}'?" } },
+                    class: "btn btn-sm btn-subtle text-danger",
+                    title: "Delete" do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %> <%# end cache %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="empty-state">
+    <div class="empty-icon"><i class="bi bi-kanban"></i></div>
+    <h3>No projects yet</h3>
+    <p>Spin up your first project to start organising your work.</p>
+    <%= link_to new_project_path, class: "btn btn-primary" do %>
+      <i class="bi bi-plus-lg me-1"></i> Create your first project
+    <% end %>
+  </div>
+<% end %>

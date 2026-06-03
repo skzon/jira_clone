@@ -1,0 +1,26 @@
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+# MinIO (local S3-compatible object storage) — great for development/POC.
+# Start with: brew install minio && minio server ~/minio-data --console-address :9001
+minio:
+  service: S3
+  access_key_id:     <%= ENV.fetch("MINIO_ACCESS_KEY", "minioadmin") %>
+  secret_access_key: <%= ENV.fetch("MINIO_SECRET_KEY", "minioadmin") %>
+  region:            us-east-1
+  bucket:            <%= ENV.fetch("MINIO_BUCKET", "jira-clone-dev") %>
+  endpoint:          <%= ENV.fetch("MINIO_ENDPOINT", "http://localhost:9000") %>
+  force_path_style:  true   # required — MinIO uses path-style URLs
+
+# Amazon S3 — for production. Credentials read from env vars, never hardcoded.
+amazon:
+  service: S3
+  access_key_id:     <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
+  region:            <%= ENV.fetch("AWS_REGION", "us-east-1") %>
+  bucket:            <%= ENV.fetch("AWS_S3_BUCKET", "jira-clone-#{Rails.env}") %>

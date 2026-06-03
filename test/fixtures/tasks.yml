@@ -1,0 +1,22 @@
+open_task:
+  title: Fix login bug
+  description: Users cannot log in on Safari
+  status: to_do
+  project: alpha
+  reporter: alice
+  assignee: bob
+
+in_progress_task:
+  title: Redesign dashboard
+  description: Make it look more like Jira
+  status: in_progress
+  project: alpha
+  reporter: alice
+
+done_task:
+  title: Set up CI
+  description: GitHub Actions pipeline
+  status: done
+  project: alpha
+  reporter: bob
+  assignee: alice

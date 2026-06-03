@@ -1,0 +1,9 @@
+first_comment:
+  body: "Reproduced on Safari 16. Will look into it."
+  task: open_task
+  user: bob
+
+second_comment:
+  body: "Found the issue — cookie SameSite attribute mismatch."
+  task: open_task
+  user: alice

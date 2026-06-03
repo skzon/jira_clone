@@ -1,0 +1,578 @@
+/*
+ * Jira-Clone theme on top of Bootstrap 5.
+ * Bootstrap is loaded from a CDN in app/views/layouts/application.html.erb.
+ * Custom color palette with a productivity-blue primary.
+ */
+
+:root {
+  --jira-blue: #0052cc;
+  --jira-blue-dark: #0747a6;
+  --jira-blue-darker: #053579;
+  --jira-blue-light: #2684ff;
+  --jira-blue-lighter: #4c9aff;
+  --jira-blue-bg: #deebff;
+  --jira-blue-bg-soft: #f4f8ff;
+
+  --jira-navy: #172b4d;
+  --jira-text: #172b4d;
+  --jira-subtle-text: #42526e;
+  --jira-muted: #6b778c;
+  --jira-border: #dfe1e6;
+  --jira-border-strong: #c1c7d0;
+  --jira-surface: #ffffff;
+  --jira-app-bg: #f4f5f7;
+
+  --jira-green: #00875a;
+  --jira-green-bg: #e3fcef;
+  --jira-yellow: #ff991f;
+  --jira-yellow-bg: #fffae6;
+  --jira-red: #de350b;
+  --jira-red-bg: #ffebe6;
+  --jira-purple: #5243aa;
+  --jira-purple-bg: #eae6ff;
+
+  --jira-shadow-sm: 0 1px 2px rgba(9, 30, 66, 0.08);
+  --jira-shadow-md: 0 4px 8px -2px rgba(9, 30, 66, 0.1), 0 0 1px rgba(9, 30, 66, 0.31);
+  --jira-shadow-lg: 0 8px 16px -4px rgba(9, 30, 66, 0.15), 0 0 1px rgba(9, 30, 66, 0.31);
+}
+
+/* ---------- Base ---------- */
+
+html, body {
+  background-color: var(--jira-app-bg);
+  color: var(--jira-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--jira-blue);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--jira-blue-dark);
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--jira-navy);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-muted, .text-secondary {
+  color: var(--jira-muted) !important;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  border-radius: 3px;
+  font-weight: 500;
+  padding: 0.45rem 0.95rem;
+  transition: background-color 120ms ease, border-color 120ms ease,
+    color 120ms ease, box-shadow 120ms ease;
+}
+.btn:focus, .btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--jira-blue-lighter);
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--jira-blue);
+  border-color: var(--jira-blue);
+  color: #fff;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--jira-blue-dark);
+  border-color: var(--jira-blue-dark);
+  color: #fff;
+}
+.btn-primary:active,
+.btn-primary:disabled {
+  background-color: var(--jira-blue-darker);
+  border-color: var(--jira-blue-darker);
+}
+
+.btn-outline-primary {
+  color: var(--jira-blue);
+  border-color: var(--jira-blue);
+}
+.btn-outline-primary:hover {
+  background-color: var(--jira-blue);
+  border-color: var(--jira-blue);
+  color: #fff;
+}
+
+.btn-secondary,
+.btn-outline-secondary {
+  color: var(--jira-subtle-text);
+  background-color: transparent;
+  border-color: var(--jira-border-strong);
+}
+.btn-secondary:hover,
+.btn-outline-secondary:hover {
+  background-color: #ebecf0;
+  border-color: var(--jira-border-strong);
+  color: var(--jira-navy);
+}
+
+.btn-danger,
+.btn-outline-danger {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--jira-red);
+  --bs-btn-border-color: var(--jira-red);
+  --bs-btn-hover-bg: #bf2600;
+  --bs-btn-hover-border-color: #bf2600;
+}
+
+/* Subtle / ghost button used in toolbars and nav */
+.btn-subtle {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--jira-subtle-text);
+}
+.btn-subtle:hover {
+  background-color: #ebecf0;
+  color: var(--jira-navy);
+}
+
+/* ---------- Navbar ---------- */
+
+.navbar.jira-navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--jira-border);
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+  box-shadow: var(--jira-shadow-sm);
+}
+
+.navbar.jira-navbar .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 700;
+  color: var(--jira-navy);
+  font-size: 1.1rem;
+}
+
+.navbar.jira-navbar .navbar-brand .brand-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--jira-blue-light), var(--jira-blue-dark));
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.navbar.jira-navbar .nav-link {
+  color: var(--jira-subtle-text);
+  font-weight: 500;
+  border-radius: 3px;
+  padding: 0.35rem 0.7rem;
+}
+.navbar.jira-navbar .nav-link:hover {
+  background-color: #ebecf0;
+  color: var(--jira-navy);
+}
+.navbar.jira-navbar .nav-link.active {
+  color: var(--jira-blue);
+  background-color: var(--jira-blue-bg);
+}
+
+.navbar.jira-navbar .user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.25rem 0.6rem 0.25rem 0.3rem;
+  background: #f4f5f7;
+  border: 1px solid var(--jira-border);
+  border-radius: 999px;
+  color: var(--jira-subtle-text);
+  font-size: 0.875rem;
+}
+.navbar.jira-navbar .user-chip .avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--jira-blue-light), var(--jira-purple));
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  border: 1px solid var(--jira-border);
+  border-radius: 6px;
+  box-shadow: var(--jira-shadow-sm);
+  background-color: var(--jira-surface);
+}
+.card .card-title {
+  color: var(--jira-navy);
+  font-weight: 600;
+}
+
+.card.project-card {
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+.card.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--jira-shadow-md);
+  border-color: var(--jira-blue-lighter);
+}
+
+.card.project-card .project-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--jira-blue-light), var(--jira-blue-dark));
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-right: 0.65rem;
+}
+
+/* ---------- Forms ---------- */
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--jira-subtle-text);
+  margin-bottom: 0.4rem;
+}
+
+.form-control,
+.form-select {
+  border: 2px solid transparent;
+  background-color: #f4f5f7;
+  border-radius: 3px;
+  color: var(--jira-text);
+  padding: 0.55rem 0.7rem;
+  transition: background-color 120ms ease, border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+.form-control:hover,
+.form-select:hover {
+  background-color: #ebecf0;
+}
+.form-control:focus,
+.form-select:focus {
+  background-color: #ffffff;
+  border-color: var(--jira-blue);
+  box-shadow: none;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: #97a0af;
+}
+
+.form-text {
+  color: var(--jira-muted);
+}
+
+/* ---------- Auth (Devise) ---------- */
+
+.auth-shell {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+  background:
+    radial-gradient(circle at 0% 0%, var(--jira-blue-bg), transparent 55%),
+    radial-gradient(circle at 100% 100%, #e6fcff, transparent 55%),
+    var(--jira-app-bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border: 1px solid var(--jira-border);
+  border-radius: 8px;
+  padding: 2.25rem 2rem;
+  box-shadow: var(--jira-shadow-lg);
+}
+
+.auth-card .auth-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 700;
+  color: var(--jira-navy);
+  font-size: 1.15rem;
+  margin-bottom: 1.25rem;
+}
+.auth-card .auth-logo .brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--jira-blue-light), var(--jira-blue-dark));
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.auth-card h1 {
+  font-size: 1.35rem;
+  margin-bottom: 0.25rem;
+}
+.auth-card .auth-subtitle {
+  color: var(--jira-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-card .form-actions .btn {
+  width: 100%;
+}
+
+.auth-links {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--jira-border);
+  font-size: 0.875rem;
+  color: var(--jira-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* ---------- Status badges (Jira-like lozenges) ---------- */
+
+.jira-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.18rem 0.55rem;
+  border-radius: 3px;
+  background: var(--jira-border);
+  color: var(--jira-subtle-text);
+  line-height: 1.2;
+}
+.jira-badge.is-active   { background: var(--jira-blue-bg);   color: var(--jira-blue-dark); }
+.jira-badge.is-progress { background: var(--jira-blue-bg);   color: var(--jira-blue-dark); }
+.jira-badge.is-todo     { background: #ebecf0;               color: var(--jira-subtle-text); }
+.jira-badge.is-hold     { background: var(--jira-yellow-bg); color: #974f0c; }
+.jira-badge.is-done     { background: var(--jira-green-bg);  color: var(--jira-green); }
+.jira-badge.is-blocked  { background: var(--jira-red-bg);    color: var(--jira-red); }
+
+/* ---------- Page header ---------- */
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.page-header .breadcrumb {
+  font-size: 0.825rem;
+  color: var(--jira-muted);
+  margin-bottom: 0.25rem;
+}
+.page-header h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+.page-header .page-subtitle {
+  color: var(--jira-muted);
+  font-size: 0.925rem;
+  margin: 0.25rem 0 0;
+}
+
+/* ---------- Empty state ---------- */
+
+.empty-state {
+  background: #ffffff;
+  border: 1px dashed var(--jira-border-strong);
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.empty-state .empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--jira-blue-bg);
+  color: var(--jira-blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+.empty-state h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
+}
+.empty-state p {
+  color: var(--jira-muted);
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- Flash / alerts ---------- */
+
+.flash-stack {
+  position: sticky;
+  top: 1rem;
+  z-index: 1050;
+}
+.alert {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  box-shadow: var(--jira-shadow-sm);
+}
+.alert-notice, .alert-success {
+  background: var(--jira-green-bg);
+  border-color: #abf5d1;
+  color: #006644;
+}
+.alert-alert, .alert-error, .alert-danger {
+  background: var(--jira-red-bg);
+  border-color: #ffbdad;
+  color: #bf2600;
+}
+
+/* ---------- Hero ---------- */
+
+.jira-hero {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(76, 154, 255, 0.18), transparent 50%),
+    radial-gradient(circle at 90% 100%, rgba(82, 67, 170, 0.15), transparent 55%),
+    linear-gradient(135deg, #ffffff, #f4f8ff);
+  border: 1px solid var(--jira-border);
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.jira-hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--jira-blue-dark);
+  background: var(--jira-blue-bg);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+.jira-hero h1 {
+  font-size: 2.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.85rem;
+  color: var(--jira-navy);
+}
+.jira-hero p.lead {
+  font-size: 1.1rem;
+  color: var(--jira-subtle-text);
+  max-width: 620px;
+}
+.jira-hero .hero-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.feature-card {
+  background: #ffffff;
+  border: 1px solid var(--jira-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  height: 100%;
+}
+.feature-card .feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--jira-blue-bg);
+  color: var(--jira-blue-dark);
+  font-size: 1.15rem;
+  margin-bottom: 0.85rem;
+}
+.feature-card h5 {
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+.feature-card p {
+  color: var(--jira-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ---------- Devise field errors ---------- */
+
+.field_with_errors {
+  display: block;
+}
+.field_with_errors .form-control,
+.field_with_errors .form-select {
+  border-color: var(--jira-red);
+  background-color: #fff;
+}
+
+.error-summary {
+  background: var(--jira-red-bg);
+  border: 1px solid #ffbdad;
+  color: #bf2600;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+}
+.error-summary strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- Utilities ---------- */
+
+.app-shell {
+  padding-top: 1.75rem;
+  padding-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--jira-muted);
+  margin-bottom: 0.75rem;
+}

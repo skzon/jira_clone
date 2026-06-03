@@ -1,0 +1,42 @@
+<p style="margin:0 0 12px;font-size:16px;font-weight:600;">
+  A task you're following was updated
+</p>
+<p style="margin:0 0 16px;color:#42526e;">
+  <%= @actor&.email || "Someone" %> updated
+  <strong><%= @task.title %></strong> in <strong><%= @task.project.name %></strong>.
+</p>
+
+<table cellpadding="0" cellspacing="0" style="width:100%;background:#f4f5f7;border:1px solid #dfe1e6;border-radius:6px;padding:14px 16px;margin-bottom:20px;">
+  <tr>
+    <td>
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#42526e;font-weight:700;margin-bottom:8px;">
+        Changes
+      </div>
+      <% if @changes.any? %>
+        <table cellpadding="0" cellspacing="0" style="width:100%;font-size:13px;color:#172b4d;">
+          <% @changes.each do |field, (from, to)| %>
+            <tr>
+              <td style="padding:4px 0;width:110px;color:#6b778c;text-transform:capitalize;">
+                <%= field.humanize %>
+              </td>
+              <td style="padding:4px 0;">
+                <span style="color:#bf2600;text-decoration:line-through;"><%= truncate(from.to_s, length: 60).presence || "—" %></span>
+                &nbsp;→&nbsp;
+                <strong style="color:#006644;"><%= truncate(to.to_s, length: 60).presence || "—" %></strong>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <span style="color:#6b778c;">No tracked field changes.</span>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<p style="margin:0;">
+  <a href="<%= @task_url %>"
+     style="display:inline-block;background:#0052cc;color:#fff;text-decoration:none;padding:10px 18px;border-radius:4px;font-weight:600;">
+    View task
+  </a>
+</p>

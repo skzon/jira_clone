@@ -1,0 +1,97 @@
+hi:
+  app_name: "जीरा क्लोन"
+
+  nav:
+    brand: "जीरा क्लोन"
+    dashboard: "डैशबोर्ड"
+    projects: "प्रोजेक्ट्स"
+    search: "खोज"
+    log_in: "लॉग इन"
+    sign_up: "साइन अप"
+    logout: "लॉग आउट"
+
+  search:
+    title: "खोज · जीरा क्लोन"
+    heading: "खोज"
+    placeholder: "कार्य और प्रोजेक्ट खोजें…"
+    button: "खोजें"
+    results_for:
+      one: '"%{query}" के लिए 1 परिणाम'
+      other: '"%{query}" के लिए %{count} परिणाम'
+    projects_section: "प्रोजेक्ट्स"
+    tasks_section: "कार्य"
+    empty_prompt_title: "आप क्या ढूंढ रहे हैं?"
+    empty_prompt_body: "अपने सभी प्रोजेक्ट और कार्यों में खोजें।"
+    no_results_title: "कोई परिणाम नहीं मिला"
+    no_results_body: '"%{query}" से कुछ नहीं मिला। कोई और कीवर्ड आज़माएं।'
+    elasticsearch_unavailable: "खोज अभी उपलब्ध नहीं है। कृपया बाद में पुनः प्रयास करें।"
+
+  projects:
+    index:
+      title: "प्रोजेक्ट्स · जीरा क्लोन"
+      heading: "प्रोजेक्ट्स"
+      subtitle:
+        one: "आपके वर्कस्पेस में 1 प्रोजेक्ट।"
+        other: "आपके वर्कस्पेस में %{count} प्रोजेक्ट।"
+      new_button: "नया प्रोजेक्ट"
+      empty_title: "अभी कोई प्रोजेक्ट नहीं"
+      empty_body: "काम व्यवस्थित करने के लिए पहला प्रोजेक्ट बनाएं।"
+    new:
+      title: "प्रोजेक्ट बनाएं · जीरा क्लोन"
+      heading: "नया प्रोजेक्ट बनाएं"
+    edit:
+      heading: "प्रोजेक्ट संपादित करें"
+    show:
+      new_task_button: "नया कार्य"
+      tasks_section: "कार्य"
+      members_section: "सदस्य"
+      description_section: "विवरण"
+      no_description: "कोई विवरण नहीं।"
+      no_tasks_title: "अभी कोई कार्य नहीं"
+      no_tasks_body: "काम को कार्यों में विभाजित करें और टीम को सौंपें।"
+
+  tasks:
+    new:
+      heading: "कार्य बनाएं"
+    edit:
+      heading: "कार्य संपादित करें"
+    show:
+      description_section: "विवरण"
+      attachments_section: "अनुलग्नक"
+      comments_section: "टिप्पणियाँ"
+      no_description: "कोई विवरण नहीं।"
+      no_attachments: "अभी कोई अनुलग्नक नहीं।"
+      no_comments: "अभी कोई टिप्पणी नहीं। चर्चा शुरू करें।"
+      unassigned: "असाइन नहीं"
+      details_section: "विवरण"
+
+  comments:
+    post_button: "टिप्पणी पोस्ट करें"
+    placeholder: "अपडेट साझा करें या प्रश्न पूछें…"
+    label: "टिप्पणी जोड़ें"
+
+  members:
+    section_title: "सदस्य"
+    add_button: "जोड़ें"
+    pick_placeholder: "उपयोगकर्ता चुनें…"
+    all_members_note: "सभी उपयोगकर्ता पहले से सदस्य हैं।"
+    invite_link: "नया साथी आमंत्रित करें"
+
+  flash:
+    project_created: "प्रोजेक्ट सफलतापूर्वक बनाया गया।"
+    project_updated: "प्रोजेक्ट सफलतापूर्वक अपडेट किया गया।"
+    project_deleted: "प्रोजेक्ट सफलतापूर्वक हटाया गया।"
+    task_created: "कार्य बनाया गया।"
+    task_updated: "कार्य अपडेट किया गया।"
+    task_deleted: "कार्य हटाया गया।"
+    comment_posted: "टिप्पणी पोस्ट की गई।"
+    comment_deleted: "टिप्पणी हटाई गई।"
+    member_added: "%{email} को प्रोजेक्ट में जोड़ा गया।"
+    member_removed: "%{email} को प्रोजेक्ट से हटाया गया।"
+    access_denied: "आपको इस प्रोजेक्ट तक पहुंच नहीं है।"
+    comment_own_only: "आप केवल अपनी टिप्पणियाँ हटा सकते हैं।"
+
+  locale:
+    switch: "भाषा बदलें"
+    en: "English"
+    hi: "हिन्दी"
